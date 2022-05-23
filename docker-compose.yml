@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  be:
+    image: node:16
+    user: "node"
+    working_dir: /home/node/app
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    command: npm run start:dev
+    environment:
+      MONGO_USERNAME: root
+      MONGO_PASSWORD: pw
+      MARIADB_PASSWORD: pw
+      MARIADB_DATABASE: be
+  mongo:
+    image: "mongo"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pw
+  mariadb:
+    image: "mariadb"
+    environment:
+      MARIADB_ROOT_PASSWORD: pw
+      MARIADB_DATABASE: be
+
+  
